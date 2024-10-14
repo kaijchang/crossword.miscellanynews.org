@@ -7,7 +7,7 @@
         <img class="logo" src="/logo.svg" alt="Miscellany News Logo" />
     </a>
     <a href="/">
-        <h1 class="title">Games</h1>
+        <h1 class="title">Crossword</h1>
     </a>
 </div>
 

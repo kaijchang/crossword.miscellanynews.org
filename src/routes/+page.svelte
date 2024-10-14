@@ -1,46 +1,63 @@
-<script>
-    const PUZZLES = [
-        {
-            "slug": "seasons-greetings",
-            "title": "Season's Greetings",
-            "author": "Mia Ryan",
-            "date": "10/02/24",
-            "progress": 0,
-            "size": [5, 5],
-        },
-        {
-            "slug": "weekday-1",
-            "title": "Weekday #1",
-            "author": "Olivia Blank",
-            "date": "10/02/24",
-            "progress": 0,
-            "size": [15, 15],
-        },
-        {
-            "slug": "vassar-bee",
-            "title": "Vassar “Bee”",
-            "author": "Felix Mundy-Mancino",
-            "date": "08/28/24",
-            "progress": 0,
-            "size": [15, 13],
-        }
-    ]
+<script lang="ts">
+    const PUZZLES: {
+        [key: string]: {
+            slug: string,
+            title: string,
+            author: string
+            date: string
+            progress: number
+            size: [number, number]
+        }[]
+    } = {
+        "Fall 2024": [
+            {
+                "slug": "seasons-greetings",
+                "title": "Season's Greetings",
+                "author": "Mia Ryan",
+                "date": "10/02/24",
+                "progress": 0,
+                "size": [5, 5],
+            },
+            {
+                "slug": "weekday-1",
+                "title": "Weekday #1",
+                "author": "Olivia Blank",
+                "date": "10/02/24",
+                "progress": 0,
+                "size": [15, 15],
+            },
+            {
+                "slug": "vassar-bee",
+                "title": "Vassar “Bee”",
+                "author": "Felix Mundy-Mancino",
+                "date": "08/28/24",
+                "progress": 0,
+                "size": [15, 13],
+            }
+        ],
+        "Spring 2024": []
+    }
 </script>
 
 <div class="container">
-    <h2 class="semester">Fall 2024</h2>
-    <div class="puzzle-container">
-        {#each PUZZLES as { slug, title, author, date, progress, size }}
-            <a href="/puzzle/{slug}">
-                <div class="puzzle">
-                    <img src="/puzzle-progress-{progress}.svg" alt="Puzzle Icon" />
-                    <h3>{title} ({size[0]}x{size[1]})</h3>
-                    <p>By <b>{author}</b></p>
-                    <p >&middot; <b class="date">{date}</b> &middot;</p>
-                </div>
-            </a>
-        {/each}
-    </div>
+    {#each Object.keys(PUZZLES) as semester}
+        <h2 class="semester">{semester}</h2>
+        <div class="puzzle-container">
+            {#if PUZZLES[semester].length === 0}
+                <p><i>Coming soon...</i></p>
+            {/if}
+            {#each PUZZLES[semester] as { slug, title, author, date, progress, size }}
+                <a href="/puzzle/{slug}">
+                    <div class="puzzle">
+                        <img src="/puzzle-progress-{progress}.svg" alt="Puzzle Icon" />
+                        <h3>{title} ({size[0]}x{size[1]})</h3>
+                        <p>By <b>{author}</b></p>
+                        <p >&middot; <b class="date">{date}</b> &middot;</p>
+                    </div>
+                </a>
+            {/each}
+        </div>
+    {/each}
 </div>
 
 <style>
@@ -49,7 +66,7 @@
     }
 
     .semester {
-        margin-bottom: 1rem;
+        margin: 1rem 0;
     }
 
     .puzzle-container {
