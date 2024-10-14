@@ -82,6 +82,6 @@
 <style>
     .container {
         margin: 1rem auto;
-        max-width: 800px;
+        max-width: min(800px, calc(100% - 2rem));
     }
 </style>
