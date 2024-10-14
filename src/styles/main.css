@@ -1,0 +1,40 @@
+:root {
+    --color-primary: #7E0308;
+}
+
+html, body {
+    margin: 0;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+h1 {
+    font-family: 'UnifrakturMaguntia', cursive;
+}
+
+h2, h3 {
+    font-family: 'Afacad Flux', sans-serif;
+}
+
+p, span {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+span {
+    font-size: 0.75rem;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
