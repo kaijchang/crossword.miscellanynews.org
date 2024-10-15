@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
-import type { Crossword } from '$lib';
+import type { Crossword } from '../../../@types';
 import { env } from '$env/dynamic/public';
 
 import { gql, request } from 'graphql-request';
