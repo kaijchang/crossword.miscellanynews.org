@@ -29,4 +29,10 @@
             max-width: 560px
         }
     }
+
+    @media(max-width: 560px) {
+        .container {
+            max-width: calc(100% - 1em);
+        }
+    }
 </style>
