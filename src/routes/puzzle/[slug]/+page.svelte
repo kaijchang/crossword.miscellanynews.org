@@ -1,82 +1,15 @@
-<script>
+<script lang="ts">
+    import type { PageData } from './$types';
+
     import Crossword from 'svelte-crossword';
 
-    const data = [
-        {
-            "clue": "Reddit forum featuring a famous person",
-            "answer": "AMA",
-            "direction": "across",
-            "x": 0,
-            "y": 0
-        },
-        {
-            "clue": "Greeting in Oaxaca",
-            "answer": "HOLA",
-            "direction": "across",
-            "x": 0,
-            "y": 1
-        },
-        {
-            "clue": "British kisses",
-            "answer": "SNOGS",
-            "direction": "across",
-            "x": 0,
-            "y": 2
-        },
-        {
-            "clue": "White whale hunter",
-            "answer": "AHAB",
-            "direction": "across",
-            "x": 1,
-            "y": 3
-        },
-        {
-            "clue": "Dog noise",
-            "answer": "ARF",
-            "direction": "across",
-            "x": 2,
-            "y": 4
-        },
-        {
-            "clue": "Noises of realization",
-            "answer": "AHS",
-            "direction": "down",
-            "x": 0,
-            "y": 0
-        },
-        {
-            "clue": "___ Lisa",
-            "answer": "MONA",
-            "direction": "down",
-            "x": 1,
-            "y": 0
-        },
-        {
-            "clue": "Honolulu hello",
-            "answer": "ALOHA",
-            "direction": "down",
-            "x": 2,
-            "y": 0
-        },
-        {
-            "clue": "Lab jelly",
-            "answer": "AGAR",
-            "direction": "down",
-            "x": 3,
-            "y": 1
-        },
-        {
-            "clue": "Infamous crypto bro (abbr.)",
-            "answer": "SBF",
-            "direction": "down",
-            "x": 4,
-            "y": 2
-        },
-    ];
+    export let data: PageData;
 </script>
 
 <div class="container">
-    <Crossword {data} />
+    {#if data.crossword.data !== null}
+        <Crossword data={data.crossword.data} />
+    {/if}
 </div>
 
 <style>
@@ -88,5 +21,6 @@
         --xd-main-color: #030303;
         --xd-bg-color: #ECECEC;
         --xd-accent-color: #D8B3B4;
+        --xd-font: 'Open Sans', sans-serif;
     }
 </style>

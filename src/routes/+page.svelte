@@ -1,58 +1,38 @@
 <script lang="ts">
-    const PUZZLES: {
-        [key: string]: {
-            slug: string,
-            title: string,
-            author: string
-            date: string
-            progress: number
-            size: [number, number]
-        }[]
-    } = {
-        "Fall 2024": [
-            {
-                "slug": "seasons-greetings",
-                "title": "Season's Greetings",
-                "author": "Mia Ryan",
-                "date": "10/02/24",
-                "progress": 0,
-                "size": [5, 5],
-            },
-            {
-                "slug": "weekday-1",
-                "title": "Weekday #1",
-                "author": "Olivia Blank",
-                "date": "10/02/24",
-                "progress": 0,
-                "size": [15, 15],
-            },
-            {
-                "slug": "vassar-bee",
-                "title": "Vassar “Bee”",
-                "author": "Felix Mundy-Mancino",
-                "date": "08/28/24",
-                "progress": 0,
-                "size": [15, 13],
-            }
-        ],
-        "Spring 2024": []
-    }
+    import type { PageData } from './$types';
+
+    import moment from 'moment';
+
+    export let data: PageData;
+
+    const puzzles: {
+        [key: string]: PageData['crosswords']
+    } = {}
+
+    $: data.crosswords.forEach(puzzle => {
+        let semester = puzzle.semester.slice(0, 4).concat(' ').concat(puzzle.semester.slice(4));
+        semester = semester.charAt(0).toUpperCase().concat(semester.slice(1));
+        if (!puzzles[semester]) {
+            puzzles[semester] = [];
+        }
+        puzzles[semester].push(puzzle);
+    });
 </script>
 
 <div class="container">
-    {#each Object.keys(PUZZLES) as semester}
+    {#each Object.keys(puzzles) as semester}
         <h2 class="semester">{semester}</h2>
         <div class="puzzle-container">
-            {#if PUZZLES[semester].length === 0}
+            {#if puzzles[semester].length === 0}
                 <p><i>Coming soon...</i></p>
             {/if}
-            {#each PUZZLES[semester] as { slug, title, author, date, progress, size }}
+            {#each puzzles[semester] as { slug, title, author, date, width, height }}
                 <a href="/puzzle/{slug}">
                     <div class="puzzle">
-                        <img src="/puzzle-progress-{progress}.svg" alt="Puzzle Icon" />
-                        <h3>{title} ({size[0]}x{size[1]})</h3>
-                        <p>By <b>{author}</b></p>
-                        <p >&middot; <b class="date">{date}</b> &middot;</p>
+                        <img src="/puzzle-progress-0.svg" alt="Puzzle Icon" />
+                        <h3>{title} ({width}x{height})</h3>
+                        <p>By <b>{author.name}</b></p>
+                        <p >&middot; <b class="date">{moment(date).format('L')}</b> &middot;</p>
                     </div>
                 </a>
             {/each}
