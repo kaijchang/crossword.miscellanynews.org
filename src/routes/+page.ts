@@ -4,10 +4,8 @@ import { env } from '$env/dynamic/public';
 
 import { gql, request } from 'graphql-request';
 
-type CrosswordWithoutData = Omit<Crossword, 'data'>
-
 export const load: PageLoad = async () => {
-    const data = await request<{ crosswords: CrosswordWithoutData[] }>(env.PUBLIC_HYGRAPH_API_URL as string, gql`
+    const data = await request<{ crosswords: Crossword[] }>(env.PUBLIC_HYGRAPH_API_URL as string, gql`
         {
             crosswords {
                 slug
@@ -19,6 +17,7 @@ export const load: PageLoad = async () => {
                 date
                 width
                 height
+                data
             }
         }
     `);

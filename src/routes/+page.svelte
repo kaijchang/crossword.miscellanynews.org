@@ -26,9 +26,9 @@
             {#if puzzles[semester].length === 0}
                 <p><i>Coming soon...</i></p>
             {/if}
-            {#each puzzles[semester] as { slug, title, author, date, width, height }}
-                <a href="/puzzle/{slug}">
-                    <div class="puzzle">
+            {#each puzzles[semester] as { slug, title, author, date, width, height, data }}
+                <a href={data && `/puzzle/${slug}`}>
+                    <div class="puzzle" class:disabled={data === null}>
                         <img src="/puzzle-progress-0.svg" alt="Puzzle Icon" />
                         <h3>{title} ({width}x{height})</h3>
                         <p>By <b>{author.name}</b></p>
@@ -66,8 +66,13 @@
         transition: background 0.2s ease-out, color 0.2s ease-out;
     }
 
-    .puzzle:hover {
+    .puzzle:not(.disabled):hover {
         background: var(--color-primary);
         color: white;
+    }
+
+    .disabled {
+        cursor: not-allowed;
+        opacity: 0.4;
     }
 </style>
