@@ -9,6 +9,27 @@
     <a href="/">
         <h1 class="title">Crossword</h1>
     </a>
+    <!-- <div class="nav-links">
+        <h4>
+            &middot;
+        </h4>
+        <h4>
+            <a href="/leaderboard">
+                Leaderboard
+            </a>
+        </h4>
+        <h4>
+            &middot;
+        </h4>
+        <h4>
+            <a href="/sign-in">
+                Sign In
+            </a>
+        </h4>
+        <h4>
+            &middot;
+        </h4>
+    </div> -->
 </div>
 
 <slot></slot>
@@ -25,5 +46,13 @@
 
     .logo {
         max-width: 100%;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 1em;
+        width: 250px;
     }
 </style>

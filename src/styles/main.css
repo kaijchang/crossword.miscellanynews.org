@@ -6,7 +6,7 @@ html, body {
     margin: 0;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, h4, p {
     margin: 0;
 }
 
@@ -14,7 +14,7 @@ h1 {
     font-family: 'UnifrakturMaguntia', cursive;
 }
 
-h2, h3 {
+h2, h3, h4 {
     font-family: 'Afacad Flux', sans-serif;
 }
 
@@ -28,6 +28,10 @@ h2 {
 
 h3 {
     font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
 }
 
 span {

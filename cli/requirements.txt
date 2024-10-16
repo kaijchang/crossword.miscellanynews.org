@@ -1,0 +1,2 @@
+puzpy==0.2.6
+requirements==2.28.2
