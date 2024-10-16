@@ -7,7 +7,7 @@ import { gql, request } from 'graphql-request';
 export const load: PageLoad = async () => {
     const data = await request<{ crosswords: Crossword[] }>(env.PUBLIC_HYGRAPH_API_URL as string, gql`
         {
-            crosswords {
+            crosswords(orderBy: date_DESC) {
                 slug
                 title
                 author {
