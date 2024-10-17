@@ -1494,7 +1494,7 @@ svelte-check@^4.0.0:
 
 "svelte-crossword@https://github.com/kaijchang/svelte-crossword.git":
   version "0.3.4"
-  resolved "https://github.com/kaijchang/svelte-crossword.git#7ab8a9196db4cf0703830f644f57899ff4bba67d"
+  resolved "https://github.com/kaijchang/svelte-crossword.git#65e748699afabeffcfd6d2f9193875ee59f08ec8"
   dependencies:
     svelte-keyboard "0.2.0"
 
