@@ -6,7 +6,7 @@
     export let data: PageData;
 
     const puzzles: {
-        [key: string]: PageData['crosswords']
+        [key: string]: (PageData['crosswords'][number] & { completion?: number, isComplete?: boolean })[]
     } = {}
 
     $: data.crosswords.forEach(puzzle => {
@@ -15,7 +15,25 @@
         if (!puzzles[semester]) {
             puzzles[semester] = [];
         }
-        puzzles[semester].push(puzzle);
+
+        let completion = 0;
+        let isComplete = false;
+
+        if (typeof localStorage !== 'undefined') {
+            const storedStateString = localStorage.getItem(`svelte-crossword.${puzzle.slug}`);
+            if (storedStateString !== null) {
+                const storedState = JSON.parse(storedStateString);
+                const percentComplete = storedState.cells.filter((cell: { value: string }) => !!cell.value).length / storedState.cells.length;
+                completion = Math.floor(percentComplete * 16);
+                isComplete = storedState.cells.every((cell: { value: string, answer: string }) => cell.value === cell.answer);
+            }
+        }
+
+        puzzles[semester].push({
+            ...puzzle,
+            completion,
+            isComplete
+        });
     });
 </script>
 
@@ -26,10 +44,14 @@
             {#if puzzles[semester].length === 0}
                 <p><i>Coming soon...</i></p>
             {/if}
-            {#each puzzles[semester] as { slug, title, author, date, width, height, data }}
+            {#each puzzles[semester] as { slug, title, author, date, width, height, data, completion, isComplete }}
                 <a href={data && `/puzzle/${slug}`}>
                     <div class="puzzle" class:disabled={data === null}>
-                        <img src="/puzzle-progress-0.svg" alt="Puzzle Icon" />
+                        <img
+                            src="/puzzle-progress-{isComplete ? 'complete' : completion}.svg"
+                            alt="Puzzle Icon"
+                            height="97"
+                        />
                         <h3>{title} ({width}x{height})</h3>
                         <p>By <b>{author.name}</b></p>
                         <p >&middot; <b class="date">{moment(date).format('L')}</b> &middot;</p>
