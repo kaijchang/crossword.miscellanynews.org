@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { PageData } from './$types';
+    import { page } from '$app/stores';
 
     import Crossword from 'svelte-crossword';
 
@@ -8,7 +9,7 @@
 
 <div class="container">
     {#if data.crossword.data !== null}
-        <Crossword data={data.crossword.data} />
+        <Crossword data={data.crossword.data} storageKey={$page.params.slug} />
     {/if}
 </div>
 
