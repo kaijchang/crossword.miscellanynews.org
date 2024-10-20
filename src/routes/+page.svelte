@@ -51,6 +51,7 @@
                 <a href={data && `/puzzle/${slug}`}>
                     <div class="puzzle" class:disabled={data === null}>
                         <img
+                            class="puzzle-icon"
                             src="/puzzle-progress-{isComplete ? 'complete' : completion}.svg"
                             alt="Puzzle Icon"
                             height="97"
@@ -99,5 +100,9 @@
     .disabled {
         cursor: not-allowed;
         opacity: 0.4;
+    }
+
+    .puzzle-icon {
+        border-radius: 0.25em;
     }
 </style>
