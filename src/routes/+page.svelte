@@ -40,6 +40,10 @@
     });
 </script>
 
+<svelte:head>
+    <title>Crossword - The Miscellany News</title> 
+</svelte:head>
+
 <div class="container">
     {#each Object.keys(puzzles) as semester}
         <h2 class="semester">{semester}</h2>
