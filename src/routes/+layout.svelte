@@ -34,8 +34,14 @@
 
 <slot></slot>
 
+<div class="footer">
+    <p>
+        Questions? Issues? Email <b><a href="mailto:kchang@vassar.edu">kchang@vassar.edu</a></b>
+    </p>
+</div>
+
 <style>
-    .header {
+    .header, .footer {
         background: var(--color-primary);
         display: flex;
         flex-direction: column;
