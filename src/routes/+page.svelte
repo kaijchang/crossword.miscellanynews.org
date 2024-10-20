@@ -1,7 +1,10 @@
 <script lang="ts">
     import type { PageData } from './$types';
 
-    import moment from 'moment';
+    import dayjs from 'dayjs';
+    import localizedFormat from 'dayjs/plugin/localizedFormat';
+    
+    dayjs.extend(localizedFormat);
 
     export let data: PageData;
 
@@ -54,7 +57,7 @@
                         />
                         <h3>{title} ({width}x{height})</h3>
                         <p>By <b>{author.name}</b></p>
-                        <p >&middot; <b class="date">{moment(date).format('L')}</b> &middot;</p>
+                        <p >&middot; <b class="date">{dayjs(date).format('L')}</b> &middot;</p>
                     </div>
                 </a>
             {/each}
