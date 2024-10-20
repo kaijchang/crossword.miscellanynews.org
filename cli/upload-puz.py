@@ -80,6 +80,7 @@ def main():
                     }
                 }""",
                 'variables': {
+                    'slug': author_slug,
                     'name': p.author,
                 }
             }),
