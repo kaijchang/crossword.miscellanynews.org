@@ -3,11 +3,14 @@ import type { Crossword } from '../@types';
 import { env } from '$env/dynamic/public';
 
 import { gql, request } from 'graphql-request';
+import dayjs from 'dayjs';
 
 export const load: PageLoad = async () => {
     const data = await request<{ crosswords: Crossword[] }>(env.PUBLIC_HYGRAPH_API_URL as string, gql`
-        {
-            crosswords(orderBy: date_DESC) {
+        query($date: DateTime!) {
+            crosswords(orderBy: date_DESC, where: {
+                date_lte: $date
+            }) {
                 slug
                 title
                 author {
@@ -20,7 +23,7 @@ export const load: PageLoad = async () => {
                 data
             }
         }
-    `);
+    `, { date: dayjs().toISOString() });
 
 	return {
         crosswords: data.crosswords,
