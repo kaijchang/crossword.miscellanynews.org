@@ -40,8 +40,8 @@ def main():
         x, y = clue['cell'] % width, clue['cell'] // width
         data.append({'clue': clue_, 'answer': answer, 'direction': direction, 'x': x, 'y': y})
 
-    date = datetime.datetime.strptime(sys.argv[2], '%Y-%m-%d')
-    semester = sys.argv[3]
+    date = datetime.datetime.strptime(input('Date (YYYY-MM-DD): '), '%Y-%m-%d')
+    semester = input('Semester (e.g. fall2024): ')
 
     authors_data = requests.post(
         os.environ['HYGRAPH_API_URL'],
@@ -60,8 +60,10 @@ def main():
     ).json()
 
     author_slug = None
+    if not p.author:
+        p.author = input('Author: ')
     for author in authors_data['data']['authors']:
-        if author['name'] == (p.author if len(sys.argv) == 4 else sys.argv[4]):
+        if author['name'] == p.author:
             author_slug = author['slug']
             break
     if author_slug is None:
@@ -134,7 +136,7 @@ def main():
             'variables': {
                 'slug': title_slug,
                 'title': p.title,
-                'date': date.isoformat() + 'Z',
+                'date': date.isoformat() + '-04:00',
                 'width': p.width,
                 'height': p.height,
                 'data': data,
