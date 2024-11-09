@@ -19,6 +19,7 @@
 
 <style>
     .container {
+        margin: auto;
         max-width: calc(100% - 1em);
     }
 </style>
