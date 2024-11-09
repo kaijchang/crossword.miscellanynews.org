@@ -11,6 +11,14 @@
     <title>{data.crossword.title} - Crossword - The Miscellany News</title> 
 </svelte:head>
 
-{#if data.crossword.data !== null}
-    <Crossword data={data.crossword.data} storageKey={$page.params.slug} />
-{/if}
+<div class="container">
+    {#if data.crossword.data !== null}
+        <Crossword data={data.crossword.data} storageKey={$page.params.slug} />
+    {/if}
+</div>
+
+<style>
+    .container {
+        max-width: calc(100% - 1em);
+    }
+</style>
