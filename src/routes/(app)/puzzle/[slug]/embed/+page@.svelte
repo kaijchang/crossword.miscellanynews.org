@@ -21,5 +21,6 @@
     .container {
         margin: auto;
         max-width: calc(100% - 1em);
+        --xd-clue-list-height: 30vh;
     }
 </style>

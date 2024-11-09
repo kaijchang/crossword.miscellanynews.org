@@ -6,6 +6,7 @@
     --xd-bg-color: #ECECEC;
     --xd-accent-color: #D8B3B4;
     --xd-font: 'Open Sans', sans-serif;
+    --xd-clue-list-height: 37.5vh;
 }
 
 html, body {
