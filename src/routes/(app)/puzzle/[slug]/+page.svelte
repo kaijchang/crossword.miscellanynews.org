@@ -20,18 +20,7 @@
 <style>
     .container {
         margin: 1rem auto;
-        max-width: 800px;
-    }
-
-    @media(max-width: 720px) {
-        .container {
-            max-width: 560px
-        }
-    }
-
-    @media(max-width: 560px) {
-        .container {
-            max-width: calc(100% - 1em);
-        }
+        width: 100%;
+        max-width: min(800px, calc(100% - 1em));
     }
 </style>
