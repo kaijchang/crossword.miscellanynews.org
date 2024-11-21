@@ -138,7 +138,7 @@ def main():
             'variables': {
                 'slug': title_slug,
                 'title': p.title,
-                'date': date.isoformat() + '-04:00',
+                'date': date.isoformat() + '-05:00',
                 'width': p.width,
                 'height': p.height,
                 'data': data,
