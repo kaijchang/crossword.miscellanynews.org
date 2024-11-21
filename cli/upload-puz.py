@@ -41,6 +41,8 @@ def main():
         data.append({'clue': clue_, 'answer': answer, 'direction': direction, 'x': x, 'y': y})
 
     date = datetime.datetime.strptime(input('Date (YYYY-MM-DD): '), '%Y-%m-%d')
+
+    # TODO: check if need to create enum value
     semester = input('Semester (e.g. fall2024): ')
 
     authors_data = requests.post(
