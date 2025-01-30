@@ -16,7 +16,7 @@
     } = {}
 
     $: data.crosswords.forEach(puzzle => {
-        let semester = puzzle.semester.slice(0, 4).concat(' ').concat(puzzle.semester.slice(4));
+        let semester = puzzle.semester.slice(0, -4).concat(' ').concat(puzzle.semester.slice(-4));
         semester = semester.charAt(0).toUpperCase().concat(semester.slice(1));
         if (!puzzles[semester]) {
             puzzles[semester] = [];
