@@ -20,7 +20,6 @@ export const load: PageLoad = async () => {
                 author {
                     name
                 }
-                semester
                 date
                 width
                 height

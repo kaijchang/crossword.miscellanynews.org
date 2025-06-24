@@ -16,8 +16,10 @@
     } = {}
 
     $: data.crosswords.forEach(puzzle => {
-        let semester = puzzle.semester.slice(0, -4).concat(' ').concat(puzzle.semester.slice(-4));
-        semester = semester.charAt(0).toUpperCase().concat(semester.slice(1));
+        const month = dayjs(puzzle.date).month() + 1;
+        let semester = month >= 8 ? 'Fall' : 'Spring';
+        const year = dayjs(puzzle.date).year();
+        semester += ` ${year}`;
         if (!puzzles[semester]) {
             puzzles[semester] = [];
         }
