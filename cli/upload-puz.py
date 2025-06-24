@@ -42,9 +42,6 @@ def main():
 
     date = datetime.datetime.strptime(input('Date (YYYY-MM-DD): '), '%Y-%m-%d')
 
-    # TODO: check if need to create enum value
-    semester = input('Semester (e.g. fall2024): ')
-
     authors_data = requests.post(
         os.environ['HYGRAPH_API_URL'],
         json.dumps({
@@ -121,7 +118,7 @@ def main():
     create_crossword_data = requests.post(
         os.environ['HYGRAPH_API_URL'],
         json.dumps({
-            'query': """mutation($slug: String!, $title: String!, $date: DateTime!, $width: Int!, $height: Int!, $data: Json!, $author: AuthorCreateOneInlineInput!, $semester: Semester!) {
+            'query': """mutation($slug: String!, $title: String!, $date: DateTime!, $width: Int!, $height: Int!, $data: Json!, $author: AuthorCreateOneInlineInput!) {
                 createCrossword(data: {
                     slug: $slug,
                     title: $title,
@@ -130,7 +127,6 @@ def main():
                     height: $height,
                     data: $data,
                     author: $author,
-                    semester: $semester
                 }) {
                     id
                 }
@@ -146,8 +142,7 @@ def main():
                     'connect': {
                         'slug': author_slug,
                     }
-                },
-                'semester': semester
+                }
             }
         }),
         headers={
